@@ -8,6 +8,7 @@ public class DecisionTree {
 
     public DecisionTree() {
         attributes = new ArrayList<String>();
+
     }
 
 }

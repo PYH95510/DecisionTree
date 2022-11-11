@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class filereader {
+
     public static void read(String fileName) throws IOException {
         List<List<String>> data = new ArrayList<>();
         BufferedReader reader = null;
@@ -30,9 +31,23 @@ public class filereader {
             e.printStackTrace();
 
         }
+
+        for (int i = 0; i < data.size(); i++) {
+            System.out.println(data.get(i));
+
+        }
+
+        System.out.println(data.size());
     }
 
-    public String toString() {
+    public static void main(String[] args) {
+        try {
+            read("/Users/yohanpark/git/Decision Tree/ESE589/data/adult.data");
+
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+
+        }
 
     }
 }
