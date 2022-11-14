@@ -1,4 +1,4 @@
-package ESE589.DecisionTree;
+package ese589.decisiontree;
 
 import java.util.List;
 import java.io.BufferedReader;
@@ -7,7 +7,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class filereader {
+public class DataReader {
 
     public static void read(String fileName) throws IOException {
         List<List<String>> data = new ArrayList<>();
@@ -23,18 +23,13 @@ public class filereader {
                 data.add(tmt);
 
                 line = reader.readLine();
-
             }
-
         } catch (FileNotFoundException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
-
         }
 
         for (int i = 0; i < data.size(); i++) {
             System.out.println(data.get(i));
-
         }
 
         System.out.println(data.size());
@@ -42,12 +37,9 @@ public class filereader {
 
     public static void main(String[] args) {
         try {
-            read("/Users/yohanpark/git/Decision Tree/ESE589/data/adult.data");
-
+            read("data/adult.data");
         } catch (IOException e) {
-            // TODO Auto-generated catch block
-
+            e.printStackTrace();
         }
-
     }
 }

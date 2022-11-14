@@ -1,4 +1,4 @@
-package ESE589.DecisionTree;
+package ese589.decisiontree;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,7 +8,5 @@ public class DecisionTree {
 
     public DecisionTree() {
         attributes = new ArrayList<String>();
-
     }
-
 }
