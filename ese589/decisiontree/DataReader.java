@@ -10,17 +10,17 @@ import java.util.ArrayList;
 public class DataReader {
 
     public static void read(String fileName) throws IOException {
-        List<List<String>> data = new ArrayList<>();
+        List<Entry> data = new ArrayList<>();
         BufferedReader reader = null;
 
         try {
             reader = new BufferedReader(new FileReader(fileName));
             String line = reader.readLine();
-
             while (line != null) {
-                List<String> tmt = new ArrayList<>();
-                tmt.add(line);
-                data.add(tmt);
+                Entry entry = Entry.parseLine(line);
+                if (entry != null) {
+                    data.add(entry);
+                }
 
                 line = reader.readLine();
             }
