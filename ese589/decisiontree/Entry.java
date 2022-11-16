@@ -44,8 +44,7 @@ public class Entry {
             entry.nativeCountry = NativeCountry.fromString(splitLine[13].trim());
 
             entry.more50k = splitLine[14].trim().equals(">50K");
-        } catch (NumberFormatException e)
-        {
+        } catch (NumberFormatException e) {
             e.printStackTrace();
             return null;
         } catch (IllegalArgumentException e) {
