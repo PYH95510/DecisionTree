@@ -24,9 +24,9 @@ public class Attributes {
         }
 
         public static WorkClass fromString(String str) {
-            for (WorkClass workClass : values()) {
-                if (workClass.toString().equals(str)) {
-                    return workClass;
+            for (WorkClass attrib : values()) {
+                if (attrib.toString().equals(str)) {
+                    return attrib;
                 }
             }
             throw new IllegalArgumentException("No WorkClass enum constant defined for " + str);
@@ -63,9 +63,9 @@ public class Attributes {
         }
 
         public static Education fromString(String str) {
-            for (Education workClass : values()) {
-                if (workClass.toString().equals(str)) {
-                    return workClass;
+            for (Education attrib : values()) {
+                if (attrib.toString().equals(str)) {
+                    return attrib;
                 }
             }
             throw new IllegalArgumentException("No Education enum constant defined for " + str);
@@ -93,9 +93,9 @@ public class Attributes {
         }
 
         public static MaritalStatus fromString(String str) {
-            for (MaritalStatus workClass : values()) {
-                if (workClass.toString().equals(str)) {
-                    return workClass;
+            for (MaritalStatus attrib : values()) {
+                if (attrib.toString().equals(str)) {
+                    return attrib;
                 }
             }
             throw new IllegalArgumentException("No MaritalStatus enum constant defined for " + str);
@@ -131,9 +131,9 @@ public class Attributes {
         }
 
         public static Occupation fromString(String str) {
-            for (Occupation workClass : values()) {
-                if (workClass.toString().equals(str)) {
-                    return workClass;
+            for (Occupation attrib : values()) {
+                if (attrib.toString().equals(str)) {
+                    return attrib;
                 }
             }
             throw new IllegalArgumentException("No Occupation enum constant defined for " + str);
@@ -160,9 +160,9 @@ public class Attributes {
         }
 
         public static Relationship fromString(String str) {
-            for (Relationship workClass : values()) {
-                if (workClass.toString().equals(str)) {
-                    return workClass;
+            for (Relationship attrib : values()) {
+                if (attrib.toString().equals(str)) {
+                    return attrib;
                 }
             }
             throw new IllegalArgumentException("No Relationship enum constant defined for " + str);
@@ -188,9 +188,9 @@ public class Attributes {
         }
 
         public static Race fromString(String str) {
-            for (Race workClass : values()) {
-                if (workClass.toString().equals(str)) {
-                    return workClass;
+            for (Race attrib : values()) {
+                if (attrib.toString().equals(str)) {
+                    return attrib;
                 }
             }
             throw new IllegalArgumentException("No Race enum constant defined for " + str);
@@ -213,9 +213,9 @@ public class Attributes {
         }
 
         public static Sex fromString(String str) {
-            for (Sex workClass : values()) {
-                if (workClass.toString().equals(str)) {
-                    return workClass;
+            for (Sex attrib : values()) {
+                if (attrib.toString().equals(str)) {
+                    return attrib;
                 }
             }
             throw new IllegalArgumentException("No Sex enum constant defined for " + str);
@@ -278,12 +278,37 @@ public class Attributes {
         }
 
         public static NativeCountry fromString(String str) {
-            for (NativeCountry workClass : values()) {
-                if (workClass.toString().equals(str)) {
-                    return workClass;
+            for (NativeCountry attrib : values()) {
+                if (attrib.toString().equals(str)) {
+                    return attrib;
                 }
             }
             throw new IllegalArgumentException("No NativeCountry enum constant defined for " + str);
+        }
+    }
+
+    public enum Income {
+        MORE50K(">50K"),
+        LESS50K("<=50K");
+
+        private final String m_text;
+
+        Income(String str) {
+            m_text = str;
+        }
+
+        @Override
+        public String toString() {
+            return m_text;
+        }
+
+        public static Income fromString(String str) {
+            for (Income attrib : values()) {
+                if (attrib.toString().equals(str)) {
+                    return attrib;
+                }
+            }
+            throw new IllegalArgumentException("No Income enum constant defined for " + str);
         }
     }
 }
