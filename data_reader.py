@@ -1,96 +1,79 @@
+from typing import Tuple, Union, List, Type
 import numpy as np
-file=open("data/adult.data")
 
-read_dtypes = \
-[
-    ('age', np.float32), 
-    ('workClass', '<S16'), 
-    ('education', '<S16'),
-    ('educationNum', np.float32),
-    ('maritalStatus', '<S16'),
-    ('occupation', '<S16'),
-    ('relationship', '<S16'),
-    ('race', '<S16'),
-    ('sex', '<S16'),
-    ('hoursPerWeek', np.float32),
-    ('nativeCountry', '<S16'),
-    ('more50K', '<S16')
-]
+class AttributeHeader:
+    is_continuous: bool
+    attribute_names: Union[np.ndarray, None]
+    read_dtype: Tuple[str, Union[str, Type[np.float32], Type[np.int32]]]
+    csv_col_index: int
 
-# dtypes = \
-# [
-#     ('age', np.float32), 
-#     ('workClass', np.int32), 
-#     ('education', np.int32),
-#     ('educationNum', np.float32),
-#     ('maritalStatus', np.int32),
-#     ('occupation', np.int32),
-#     ('relationship', np.int32),
-#     ('race', np.int32),
-#     ('sex', np.int32),
-#     ('hoursPerWeek', np.float32),
-#     ('nativeCountry', np.int32),
-#     ('more50K', np.int32)
-# ]
-
-# Replace the above routine with the generalized routine below
-# Create empty array
-dtypes = [None] * len(read_dtypes)
-for index, read_dtype in enumerate(read_dtypes):
-    if read_dtype[1] != np.float32 and read_dtype[1] != np.int32:
-        dtypes[index] = (read_dtype[0], np.int32) # type: ignore
-    else:
-        dtypes[index] = read_dtype
+    def __init__(
+        self,
+        is_continuous: bool, 
+        read_dtype: Tuple[str, Union[str, Type[np.float32], Type[np.int32]]],
+        csv_col_index: int
+        ):
+        self.is_continuous = is_continuous
+        self.attribute_names = None
+        self.read_dtype = read_dtype
+        self.csv_col_index = csv_col_index
 
 
-lines = file.readlines()
-read_table = np.zeros(shape=(len(lines)), dtype=read_dtypes)
+def _read_dataset(csv: List[str], attrib_headers: List[AttributeHeader]):
+    read_dtypes = [attrib_header.read_dtype for attrib_header in attrib_headers]
 
-for index, line in enumerate(lines):
-    cols = line.split(',')
-    if len(cols) == 0:
-        continue
-    
-    cols = [col.strip() for col in cols]
+    # Create empty array
+    dtypes = [None] * len(read_dtypes)
 
-    entry = np.array(
-        [(
-            cols[0], 
-            cols[1], 
-            cols[3], 
-            cols[4], 
-            cols[5], 
-            cols[6], 
-            cols[7], 
-            cols[8], 
-            cols[9],
-            cols[12], 
-            cols[13], 
-            cols[14]
-        )],
-        dtype=read_dtypes)
-    read_table[index] = entry
+    # Create dtype list with string attributes replaced with int attributes
+    for index, read_dtype in enumerate(read_dtypes):
+        if attrib_headers[index].is_continuous:
+            dtypes[index] = read_dtype # type: ignore
+        else:
+            dtypes[index] = (read_dtype[0], np.int32) # type: ignore
 
-data_table = np.zeros_like(read_table, dtype=dtypes)
+    read_table = np.zeros(shape=(len(csv)), dtype=read_dtypes)
 
-# data_table['age'] = read_table['age']
-# _, data_table['workClass'] = np.unique(read_table['workClass'], return_inverse=True)
-# _, data_table['education'] = np.unique(read_table['education'], return_inverse=True)
-# data_table['educationNum'] = read_table['educationNum']
-# _, data_table['maritalStatus'] = np.unique(read_table['maritalStatus'], return_inverse=True)
-# _, data_table['occupation'] = np.unique(read_table['occupation'], return_inverse=True)
-# _, data_table['relationship'] = np.unique(read_table['relationship'], return_inverse=True)
-# _, data_table['race'] = np.unique(read_table['race'], return_inverse=True)
-# _, data_table['sex'] = np.unique(read_table['sex'], return_inverse=True)
-# data_table['hoursPerWeek'] = read_table['hoursPerWeek']
-# _, data_table['nativeCountry'] = np.unique(read_table['nativeCountry'], return_inverse=True)
-# _, data_table['more50K'] = np.unique(read_table['more50K'], return_inverse=True)
+    for index, line in enumerate(csv):
+        cols = line.split(',')
+        if len(cols) == 0:
+            continue
+        
+        cols = [col.strip() for col in cols]
+        entry = tuple([cols[attrib_header.csv_col_index] for attrib_header in attrib_headers])
+        entry = np.array([entry], dtype=read_dtypes)
+        read_table[index] = entry
 
-# Replace the above routine with the generalized routine below
-for read_dtype in read_dtypes:
-    if (read_dtype[1] != np.int32 and read_dtype[1] != np.float32):
-        _, data_table[read_dtype[0]] = np.unique(read_table[read_dtype[0]], return_inverse=True)
-    else:
-        data_table[read_dtype[0]] = read_table[read_dtype[0]]
+    data_table = np.zeros_like(read_table, dtype=dtypes)
 
-print(data_table)
+    # Convert string columns to int (enum) columns
+    for read_dtype, attrib_header in zip(read_dtypes, attrib_headers):
+        if attrib_header.is_continuous:
+            data_table[read_dtype[0]] = read_table[read_dtype[0]]
+        else:
+            attrib_header.attribute_names, data_table[read_dtype[0]] = \
+                np.unique(read_table[read_dtype[0]], return_inverse=True)
+
+    return data_table
+
+def read_adult_dataset():
+    file = open("data/adult.data")
+    lines = file.readlines()
+
+    attrib_headers = [
+        AttributeHeader(True,   ('age', np.float32),            0),
+        AttributeHeader(False,  ('workClass', '<S16'),          1),
+        AttributeHeader(False,  ('education', '<S16'),          3),
+        AttributeHeader(True,   ('educationNum', np.float32),   4),
+        AttributeHeader(False,  ('maritalStatus', '<S16'),      5),
+        AttributeHeader(False,  ('occupation', '<S16'),         6),
+        AttributeHeader(False,  ('relationship', '<S16'),       7),
+        AttributeHeader(False,  ('race', '<S16'),               8),
+        AttributeHeader(False,  ('sex', '<S16'),                9),
+        AttributeHeader(True,   ('hoursPerWeek', np.float32),   12),
+        AttributeHeader(False,  ('nativeCountry', '<S16'),      13),
+        AttributeHeader(False,  ('more50K', '<S16'),            14)
+    ]
+
+    data_table = _read_dataset(lines, attrib_headers)
+    return attrib_headers, data_table
