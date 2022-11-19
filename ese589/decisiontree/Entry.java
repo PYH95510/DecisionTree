@@ -16,7 +16,7 @@ public class Entry {
     public int capital_loss;
     public int hoursPerWeek;
     public NativeCountry nativeCountry;
-    public Income income;
+    public boolean more50k;
 
     private Entry() {
 
@@ -42,9 +42,9 @@ public class Entry {
             entry.sex = Sex.fromString(splitLine[9].trim());
             entry.hoursPerWeek = Integer.parseInt(splitLine[12].trim());
             entry.nativeCountry = NativeCountry.fromString(splitLine[13].trim());
-            entry.income = Income.fromString(splitLine[14].trim());
-        } catch (NumberFormatException e)
-        {
+
+            entry.more50k = splitLine[14].trim().equals(">50K");
+        } catch (NumberFormatException e) {
             e.printStackTrace();
             return null;
         } catch (IllegalArgumentException e) {
@@ -68,7 +68,12 @@ public class Entry {
         sb.append(sex).append(" ");
         sb.append(hoursPerWeek).append(" ");
         sb.append(nativeCountry).append(" ");
-        sb.append(income);
+
+        if (more50k) {
+            sb.append(">50K");
+        } else {
+            sb.append("<=50k");
+        }
         return sb.toString();
     }
 }
