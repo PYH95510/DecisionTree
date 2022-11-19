@@ -9,12 +9,7 @@ read_dtypes = \
     ('educationNum', np.float32),
     ('maritalStatus', '<S16'),
     ('occupation', '<S16'),
-    ('relationship', '<S16'),
-    ('race', '<S16'),
-    ('sex', '<S16'),
-    ('hoursPerWeek', np.float32),
-    ('nativeCountry', '<S16'),
-    ('more50K', '<S16')
+    ('relationship', '<S16')
 ]
 
 # dtypes = \
