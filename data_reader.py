@@ -57,7 +57,7 @@ def _read_dataset(csv: List[str], attrib_headers: List[AttributeHeader]):
     return data_table
 
 def read_adult_dataset():
-    file = open("data/adult.data")
+    file = open('data/adult.data')
     lines = file.readlines()
 
     attrib_headers = [
@@ -75,5 +75,65 @@ def read_adult_dataset():
         AttributeHeader(False,  ('more50K', '<S16'),            14)
     ]
 
+    data_table = _read_dataset(lines, attrib_headers)
+    return attrib_headers, data_table
+
+def read_autism_adolescent_dataset():
+    file = open('data/Autism-Adolescent-Data.arff')
+    lines = file.readlines()
+    lines = lines[25:128]
+
+    # Too little data. Only use the A scores for this
+    attrib_headers = [
+        AttributeHeader(False, ('a1Score', np.int32), 0),
+        AttributeHeader(False, ('a2Score', np.int32), 1),
+        AttributeHeader(False, ('a3Score', np.int32), 2),
+        AttributeHeader(False, ('a4Score', np.int32), 3),
+        AttributeHeader(False, ('a5Score', np.int32), 4),
+        AttributeHeader(False, ('a6Score', np.int32), 5),
+        AttributeHeader(False, ('a7Score', np.int32), 6),
+        AttributeHeader(False, ('a8Score', np.int32), 7),
+        AttributeHeader(False, ('a9Score', np.int32), 8),
+        AttributeHeader(False, ('a10Score', np.int32), 9),
+        # AttributeHeader(True, ('age', np.float32), 10),
+        # AttributeHeader(False, ('gender', '<S8'), 11),
+        # AttributeHeader(False, ('ethnicity', '<S16'), 12),
+        # AttributeHeader(False, ('jundice', '<S8'), 13),
+        # AttributeHeader(False, ('autism', '<S8'), 14),
+        # AttributeHeader(False, ('countryOfResidence', '<S16'), 15),
+        # AttributeHeader(False, ('relation', '<S16'), 19),
+        AttributeHeader(False, ("class", '<S8'), 20),
+    ]
+    
+    data_table = _read_dataset(lines, attrib_headers)
+    return attrib_headers, data_table
+
+def read_autism_adult_dataset():
+    file = open('data/Autism-Adult-Data.arff')
+    lines = file.readlines()
+    lines = lines[25:728]
+
+    # Too little data. Only use the A scores for this
+    attrib_headers = [
+        AttributeHeader(False, ('a1Score', np.int32), 0),
+        AttributeHeader(False, ('a2Score', np.int32), 1),
+        AttributeHeader(False, ('a3Score', np.int32), 2),
+        AttributeHeader(False, ('a4Score', np.int32), 3),
+        AttributeHeader(False, ('a5Score', np.int32), 4),
+        AttributeHeader(False, ('a6Score', np.int32), 5),
+        AttributeHeader(False, ('a7Score', np.int32), 6),
+        AttributeHeader(False, ('a8Score', np.int32), 7),
+        AttributeHeader(False, ('a9Score', np.int32), 8),
+        AttributeHeader(False, ('a10Score', np.int32), 9),
+        # AttributeHeader(True, ('age', np.float32), 10),
+        # AttributeHeader(False, ('gender', '<S8'), 11),
+        # AttributeHeader(False, ('ethnicity', '<S16'), 12),
+        # AttributeHeader(False, ('jundice', '<S8'), 13),
+        # AttributeHeader(False, ('autism', '<S8'), 14),
+        # AttributeHeader(False, ('countryOfResidence', '<S16'), 15),
+        # AttributeHeader(False, ('relation', '<S16'), 19),
+        AttributeHeader(False, ("class", '<S8'), 20),
+    ]
+    
     data_table = _read_dataset(lines, attrib_headers)
     return attrib_headers, data_table
