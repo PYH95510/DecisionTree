@@ -4,6 +4,7 @@ import numpy as np
 class AttributeHeader:
     is_continuous: bool
     attribute_names: Union[np.ndarray, None]
+    data_col_index: int
     read_dtype: Tuple[str, Union[str, Type[np.float32], Type[np.int32]]]
     csv_col_index: int
 
@@ -15,6 +16,7 @@ class AttributeHeader:
         ):
         self.is_continuous = is_continuous
         self.attribute_names = None
+        self.data_col_index = -1
         self.read_dtype = read_dtype
         self.csv_col_index = csv_col_index
 
@@ -26,11 +28,11 @@ def _read_dataset(csv: List[str], attrib_headers: List[AttributeHeader]):
     dtypes = [None] * len(read_dtypes)
 
     # Create dtype list with string attributes replaced with int attributes
-    for index, read_dtype in enumerate(read_dtypes):
+    for index, attrib_header in enumerate(attrib_headers):
         if attrib_headers[index].is_continuous:
-            dtypes[index] = read_dtype # type: ignore
+            dtypes[index] = attrib_header.read_dtype # type: ignore
         else:
-            dtypes[index] = (read_dtype[0], np.int32) # type: ignore
+            dtypes[index] = (attrib_header.read_dtype[0], np.int32) # type: ignore
 
     read_table = np.zeros(shape=(len(csv)), dtype=read_dtypes)
 
@@ -47,7 +49,10 @@ def _read_dataset(csv: List[str], attrib_headers: List[AttributeHeader]):
     data_table = np.zeros_like(read_table, dtype=dtypes)
 
     # Convert string columns to int (enum) columns
-    for read_dtype, attrib_header in zip(read_dtypes, attrib_headers):
+    for i, attrib_header in enumerate(attrib_headers):
+        read_dtype = attrib_header.read_dtype
+        attrib_header.data_col_index = i
+        
         if attrib_header.is_continuous:
             data_table[read_dtype[0]] = read_table[read_dtype[0]]
         else:
