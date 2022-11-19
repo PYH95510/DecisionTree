@@ -86,20 +86,18 @@ def read_adult_dataset():
 def read_autism_adolescent_dataset():
     file = open('data/Autism-Adolescent-Data.arff')
     lines = file.readlines()
-    lines = lines[25:128]
+    lines = lines[1:104]
 
     # Too little data. Only use the A scores for this
     attrib_headers = [
-        AttributeHeader(False, ('a1Score', np.int32), 0),
-        AttributeHeader(False, ('a2Score', np.int32), 1),
-        AttributeHeader(False, ('a3Score', np.int32), 2),
-        AttributeHeader(False, ('a4Score', np.int32), 3),
-        AttributeHeader(False, ('a5Score', np.int32), 4),
-        AttributeHeader(False, ('a6Score', np.int32), 5),
-        AttributeHeader(False, ('a7Score', np.int32), 6),
-        AttributeHeader(False, ('a8Score', np.int32), 7),
-        AttributeHeader(False, ('a9Score', np.int32), 8),
-        AttributeHeader(False, ('a10Score', np.int32), 9),
+        AttributeHeader(False, ('age', np.int32), 10),
+        AttributeHeader(False, ('sex', '<S16'), 11),
+        AttributeHeader(False, ('ethnicity','<S16'), 12),
+        AttributeHeader(False, ('jundice', '<S16'), 13),
+        AttributeHeader(False, ('autism', '<S16'), 14),
+        AttributeHeader(False, ('countryOfResidence', '<S16'), 15),
+        AttributeHeader(False, ('relation', '<S16'), 19)
+
         # AttributeHeader(True, ('age', np.float32), 10),
         # AttributeHeader(False, ('gender', '<S8'), 11),
         # AttributeHeader(False, ('ethnicity', '<S16'), 12),
@@ -107,7 +105,6 @@ def read_autism_adolescent_dataset():
         # AttributeHeader(False, ('autism', '<S8'), 14),
         # AttributeHeader(False, ('countryOfResidence', '<S16'), 15),
         # AttributeHeader(False, ('relation', '<S16'), 19),
-        AttributeHeader(False, ("class", '<S8'), 20),
     ]
     
     data_table = _read_dataset(lines, attrib_headers)
@@ -116,20 +113,17 @@ def read_autism_adolescent_dataset():
 def read_autism_adult_dataset():
     file = open('data/Autism-Adult-Data.arff')
     lines = file.readlines()
-    lines = lines[25:728]
+    lines = lines[26:729]
 
     # Too little data. Only use the A scores for this
     attrib_headers = [
-        AttributeHeader(False, ('a1Score', np.int32), 0),
-        AttributeHeader(False, ('a2Score', np.int32), 1),
-        AttributeHeader(False, ('a3Score', np.int32), 2),
-        AttributeHeader(False, ('a4Score', np.int32), 3),
-        AttributeHeader(False, ('a5Score', np.int32), 4),
-        AttributeHeader(False, ('a6Score', np.int32), 5),
-        AttributeHeader(False, ('a7Score', np.int32), 6),
-        AttributeHeader(False, ('a8Score', np.int32), 7),
-        AttributeHeader(False, ('a9Score', np.int32), 8),
-        AttributeHeader(False, ('a10Score', np.int32), 9),
+        AttributeHeader(False, ('age', np.int32), 10),
+        AttributeHeader(False, ('sex', '<S16'), 11),
+        AttributeHeader(False, ('ethnicity','<S16'), 12),
+        AttributeHeader(False, ('jundice', '<S16'), 13),
+        AttributeHeader(False, ('autism', '<S16'), 14),
+        AttributeHeader(False, ('countryOfResidence', '<S16'), 15),
+        AttributeHeader(False, ('relation', '<S16'), 19)
         # AttributeHeader(True, ('age', np.float32), 10),
         # AttributeHeader(False, ('gender', '<S8'), 11),
         # AttributeHeader(False, ('ethnicity', '<S16'), 12),
@@ -137,8 +131,104 @@ def read_autism_adult_dataset():
         # AttributeHeader(False, ('autism', '<S8'), 14),
         # AttributeHeader(False, ('countryOfResidence', '<S16'), 15),
         # AttributeHeader(False, ('relation', '<S16'), 19),
-        AttributeHeader(False, ("class", '<S8'), 20),
     ]
     
     data_table = _read_dataset(lines, attrib_headers)
     return attrib_headers, data_table
+
+def census_income_dataset():
+    file = open('data/census-income.data')
+    lines = file.readlines()
+    lines = lines[1:199523]
+
+
+    attrib_headers = [
+        AttributeHeader(False, ('age', np.int32), 0),
+        AttributeHeader(False, ('occupation', '<S16'), 1),
+        AttributeHeader(False, ('education', '<S16'), 4),
+        AttributeHeader(False, ('maritalStatus', '<S16'), 7),
+        AttributeHeader(False, ('ethnicity', '<S16'), 10),
+        AttributeHeader(False, ('sex', '<S16'), 12),
+        AttributeHeader(False, ('originCountry', '<S16'), 35)
+    ]
+    
+    data_table = _read_dataset(lines, attrib_headers)
+    return attrib_headers, data_table
+
+
+def census_income_dataset():
+    file = open('data/default of credit card clients.csv')
+    lines = file.readlines()
+    lines = lines[1:30000]
+
+
+    attrib_headers = [
+        AttributeHeader(False, ('amountofGivenCredit', np.float32), 1),
+        AttributeHeader(False, ('sex', np.float32), 2),
+        AttributeHeader(False, ('education', np.float32), 3),
+        AttributeHeader(False, ('maritalStatus', np.float32), 4),
+        AttributeHeader(False, ('age', np.float32), 5)
+
+  
+    ]
+    
+    data_table = _read_dataset(lines, attrib_headers)
+    return attrib_headers, data_table
+
+
+def census_income_dataset():
+    file = open('data/diabetes_data_upload.csv')
+    lines = file.readlines()
+    lines = lines[1:521]
+
+
+    attrib_headers = [
+        AttributeHeader(False, ('age', '<S16'), 0),
+        AttributeHeader(False, ('sex', '<S16'), 1),
+        AttributeHeader(False, ('Polyuria', '<S16'), 2),
+        AttributeHeader(False, ('suddenWeightLoss', '<S16'), 4),
+        AttributeHeader(False, ('weakness', 'S16'), 5),
+        AttributeHeader(False, ('visualBlurring', '<S16'), 8),
+        AttributeHeader(False, ('Obesity', '<S16'), 15),
+        AttributeHeader(False, ('class', 'S16'), 16)
+    
+    
+    
+    
+    
+  
+    ]
+    
+    data_table = _read_dataset(lines, attrib_headers)
+    return attrib_headers, data_table    
+
+
+def census_income_dataset():
+    file = open('data/kohkiloyeh.csv')
+    lines = file.readlines()
+    lines = lines[1:101]
+
+
+    attrib_headers = [
+        AttributeHeader(False, ('degree', '<S16'), 0),
+        AttributeHeader(False, ('caprice', '<S16'), 1),
+        AttributeHeader(False, ('topic', '<S16'), 2),
+        AttributeHeader(False, ('limit', '<S16'), 4),
+        AttributeHeader(False, ('stopLossOrder', '<S16'), 5),
+        AttributeHeader(False, ('pricetoBook', '<S16'), 8)
+    
+     
+     
+    
+    
+    
+    
+    
+    
+    
+  
+    ]
+    
+    data_table = _read_dataset(lines, attrib_headers)
+    return attrib_headers, data_table    
+
