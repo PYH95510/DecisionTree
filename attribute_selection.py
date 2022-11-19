@@ -2,6 +2,8 @@ from typing import List, Union, Tuple, Any
 import numpy as np
 from data_reader import AttributeHeader
 
+use_gain_ratio = False
+
 def _entropy_class(class_header: AttributeHeader, class_col: np.ndarray):
     assert(class_header.attribute_names is not None)
 
@@ -83,6 +85,21 @@ def entropy(attrib_headers: List[AttributeHeader], data_table: np.ndarray) -> Tu
 
     class_entropy = _entropy_class(class_header, data_table[class_header.read_dtype[0]])
     gain_list = class_entropy - entropy_list
+
+    if use_gain_ratio:
+        for i, attrib_header in enumerate(attrib_headers[:-1]):
+            if not attrib_header.is_continuous:
+                assert(attrib_header.attribute_names is not None)
+                data_col = data_table[attrib_header.read_dtype[0]]
+                total_count = data_col.shape[0]
+                split_info = 0.0
+                for j in range(0, attrib_header.attribute_names.shape[0]):
+                    attrib_count = np.count_nonzero(data_col == j)
+                    if attrib_count > 0:
+                        split_info += -attrib_count / total_count * np.log2(attrib_count / total_count)
+                    if split_info > 0:
+                        gain_list[i] /= split_info
+
     max_gain_idx = np.argmax(gain_list)
 
     return int(max_gain_idx), partition_val_list[max_gain_idx]
