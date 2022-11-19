@@ -1,28 +1,3 @@
-@relation adolescent
-
-@attribute A1_Score {0,1}
-@attribute A2_Score {0,1}
-@attribute A3_Score {0,1}
-@attribute A4_Score {0,1}
-@attribute A5_Score {0,1}
-@attribute A6_Score {0,1}
-@attribute A7_Score {0,1}
-@attribute A8_Score {0,1}
-@attribute A9_Score {0,1}
-@attribute A10_Score {0,1}
-@attribute age numeric
-@attribute gender {m,f}
-@attribute ethnicity {Hispanic,Black,White-European,'Middle Eastern ','South Asian',Others,Latino,Asian}
-@attribute jundice {yes,no}
-@attribute austim {yes,no}
-@attribute contry_of_res {Austria,AmericanSamoa,'United Kingdom',Albania,Belgium,Afghanistan,Australia,Bahrain,Azerbaijan,'United Arab Emirates','New Zealand','United States',Argentina,Jordan,Canada,Brazil,Croatia,India,Bangladesh,France,Indonesia,Egypt,Netherlands,Greenland,Bahamas,'South Africa','Viet Nam',Comoros,Portugal,Finland,Norway,Ireland,Anguilla}
-@attribute used_app_before {no,yes}
-@attribute result numeric
-@attribute age_desc {'12-16 years','12-15 years'}
-@attribute relation {Parent,Relative,Self,'Health care professional',Others}
-@attribute Class/ASD {NO,YES}
-
-@data
 0,0,0,1,1,1,1,1,1,0,15,m,Hispanic,yes,yes,Austria,no,6,'12-16 years',Parent,NO
 0,0,0,0,0,0,0,0,1,1,15,m,Black,no,no,Austria,no,2,'12-16 years',Relative,NO
 0,0,0,0,0,0,0,0,1,1,12,f,?,no,no,AmericanSamoa,no,2,'12-16 years',?,NO
