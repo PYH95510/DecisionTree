@@ -37,7 +37,7 @@ def _entropy_continuous(
     
     min_entropy_idx = np.argmin(entropy_list)
 
-    return entropy_list[min_entropy_idx], (data_sort[min_entropy_idx+1], data_sort[min_entropy_idx+2])
+    return entropy_list[min_entropy_idx], (data_sort[min_entropy_idx], data_sort[min_entropy_idx+1])
 
 def _entropy_discrete(
     attrib_header: AttributeHeader, 
