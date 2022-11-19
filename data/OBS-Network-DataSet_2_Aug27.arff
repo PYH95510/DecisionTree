@@ -1,29 +1,3 @@
-@relation 'adellll-weka.filters.unsupervised.attribute.Remove-R1-weka.filters.unsupervised.attribute.Remove-R21,23'
-
-@attribute Node numeric
-@attribute 'Utilised Bandwith Rate' numeric
-@attribute 'Packet Drop Rate' numeric
-@attribute Full_Bandwidth numeric
-@attribute Average_Delay_Time_Per_Sec numeric
-@attribute Percentage_Of_Lost_Pcaket_Rate numeric
-@attribute Percentage_Of_Lost_Byte_Rate numeric
-@attribute 'Packet Received  Rate' numeric
-@attribute 'of Used_Bandwidth' numeric
-@attribute Lost_Bandwidth numeric
-@attribute 'Packet Size_Byte' numeric
-@attribute Packet_Transmitted numeric
-@attribute Packet_Received numeric
-@attribute Packet_lost numeric
-@attribute Transmitted_Byte numeric
-@attribute Received_Byte numeric
-@attribute 10-Run-AVG-Drop-Rate numeric
-@attribute 10-Run-AVG-Bandwith-Use numeric
-@attribute 10-Run-Delay numeric
-@attribute 'Node Status' {B,NB,'P NB'}
-@attribute 'Flood Status' numeric
-@attribute 'Class' {'NB-No Block',Block,'No Block',NB-Wait}
-
-@data
 3,0.822038,0.190381,1000,0.004815,19.031487,19.038129,0.809619,822.0375,177.9625,1440,90324,73128,17196,130066560,105304320,0.146594,0.780936,0.001838,B,0.023455,'NB-No Block'
 9,0.275513,0.729111,100,0.004815,72.889036,72.911141,0.270889,27.55125,72.44875,1440,9048,2451,6598,13029120,3529440,0.517669,0.242451,0.002236,NB,0.460725,Block
 3,0.923707,0.090383,900,0.000633,9.035834,9.038339,0.909617,831.336,68.664,1440,81276,73930,7346,117037440,106459200,0.058749,0.886758,0.001751,B,0,'No Block'
