@@ -14,21 +14,7 @@ read_dtypes = \
     ('nativeCountry', '<S16'),
 ]
 
-# dtypes = \
-# [
-#     ('age', np.float32), 
-#     ('workClass', np.int32), 
-#     ('education', np.int32),
-#     ('educationNum', np.float32),
-#     ('maritalStatus', np.int32),
-#     ('occupation', np.int32),
-#     ('relationship', np.int32),
-#     ('race', np.int32),
-#     ('sex', np.int32),
-#     ('hoursPerWeek', np.float32),
-#     ('nativeCountry', np.int32),
-#     ('more50K', np.int32)
-# ]
+
 
 # Replace the above routine with the generalized routine below
 # Create empty array
@@ -67,18 +53,7 @@ for index, line in enumerate(lines):
 
 data_table = np.zeros_like(read_table, dtype=dtypes)
 
-# data_table['age'] = read_table['age']
-# _, data_table['workClass'] = np.unique(read_table['workClass'], return_inverse=True)
-# _, data_table['education'] = np.unique(read_table['education'], return_inverse=True)
-# data_table['educationNum'] = read_table['educationNum']
-# _, data_table['maritalStatus'] = np.unique(read_table['maritalStatus'], return_inverse=True)
-# _, data_table['occupation'] = np.unique(read_table['occupation'], return_inverse=True)
-# _, data_table['relationship'] = np.unique(read_table['relationship'], return_inverse=True)
-# _, data_table['race'] = np.unique(read_table['race'], return_inverse=True)
-# _, data_table['sex'] = np.unique(read_table['sex'], return_inverse=True)
-# data_table['hoursPerWeek'] = read_table['hoursPerWeek']
-# _, data_table['nativeCountry'] = np.unique(read_table['nativeCountry'], return_inverse=True)
-# _, data_table['more50K'] = np.unique(read_table['more50K'], return_inverse=True)
+
 
 # Replace the above routine with the generalized routine below
 for read_dtype in read_dtypes:
