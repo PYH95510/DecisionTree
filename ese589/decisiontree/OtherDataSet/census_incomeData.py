@@ -1,15 +1,17 @@
 import numpy as np
-file=open("data/adult.data")
+file=open("data/census-income.data")
 
 read_dtypes = \
 [
     ('age', np.float32), 
     ('workClass', '<S16'), 
     ('education', '<S16'),
-    ('educationNum', np.float32),
     ('maritalStatus', '<S16'),
     ('occupation', '<S16'),
-    ('relationship', '<S16')
+    ('relationship', '<S16'),
+    ('race', '<S16'),
+    ('sex', '<S16'),
+    ('nativeCountry', '<S16'),
 ]
 
 # dtypes = \
@@ -52,16 +54,13 @@ for index, line in enumerate(lines):
         [(
             cols[0], 
             cols[1], 
-            cols[3], 
             cols[4], 
-            cols[5], 
-            cols[6], 
             cols[7], 
             cols[8], 
-            cols[9],
+            cols[9], 
+            cols[10], 
             cols[12], 
-            cols[13], 
-            cols[14]
+            cols[17]
         )],
         dtype=read_dtypes)
     read_table[index] = entry
