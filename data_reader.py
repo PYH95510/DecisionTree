@@ -156,7 +156,7 @@ def census_income_dataset():
     return attrib_headers, data_table
 
 
-def census_income_dataset():
+def creditcard_client_dataset():
     file = open('data/default of credit card clients.csv')
     lines = file.readlines()
     lines = lines[1:30000]
@@ -176,7 +176,7 @@ def census_income_dataset():
     return attrib_headers, data_table
 
 
-def census_income_dataset():
+def diabetes_dataset():
     file = open('data/diabetes_data_upload.csv')
     lines = file.readlines()
     lines = lines[1:521]
@@ -203,7 +203,7 @@ def census_income_dataset():
     return attrib_headers, data_table    
 
 
-def census_income_dataset():
+def stock_dataset():
     file = open('data/kohkiloyeh.csv')
     lines = file.readlines()
     lines = lines[1:101]
@@ -218,12 +218,6 @@ def census_income_dataset():
         AttributeHeader(False, ('pricetoBook', '<S16'), 8)
     
      
-     
-    
-    
-    
-    
-    
     
     
   
@@ -232,3 +226,196 @@ def census_income_dataset():
     data_table = _read_dataset(lines, attrib_headers)
     return attrib_headers, data_table    
 
+
+
+def obs_network_dataset():
+    file = open('data/OBS-Network-DataSet_2_Aug27.arff')
+    lines = file.readlines()
+    lines = lines[1:1075]
+
+
+    attrib_headers = [
+        AttributeHeader(False, ('node', np.float32),  0),
+        AttributeHeader(False, ('packet_Size_Bite', np.float32), 1),
+        AttributeHeader(False, ('packet_Transmitted', np.float32), 2),
+        AttributeHeader(False, ('nodeStatus', '<S16'), 4),
+        AttributeHeader(False, ('class', '<S16'), 5)
+
+     
+
+    
+    
+  
+    ]
+    
+    data_table = _read_dataset(lines, attrib_headers)
+    return attrib_headers, data_table    
+
+
+
+def page_block_dataset():
+    file = open('data/page-blocks.data')
+    lines = file.readlines()
+    lines = lines[1:5473]
+
+
+    attrib_headers = [
+        AttributeHeader(False, ('height', np.float32),  0),
+        AttributeHeader(False, ('length', np.float32), 1),
+        AttributeHeader(False, ('area', np.float32), 2),
+        AttributeHeader(False, ('blackPixels', np.float32), 8),
+        AttributeHeader(False, ('blackAnd', np.float32), 9),
+        AttributeHeader(False, ('whiteBlackTransition', np.float32), 10)
+
+     
+
+    
+    
+  
+    ]
+    
+    data_table = _read_dataset(lines, attrib_headers)
+    return attrib_headers, data_table    
+
+
+def risk_factors_dataset():
+    file = open('data/risk_factors_cervical_cancer.csv')
+    lines = file.readlines()
+    lines = lines[2:859]
+
+
+    attrib_headers = [
+        AttributeHeader(False, ('Age', np.float32),  0),
+        AttributeHeader(False, ('numberofSexualPartners', np.float32), 1),
+        AttributeHeader(False, ('firstSexualIntercourse', np.float32), 2),
+        AttributeHeader(False, ('numberofPregnancies', np.float32), 3),
+        AttributeHeader(False, ('Smokes', np.float32), 4),
+        AttributeHeader(False, ('smokeYears', np.float32), 5),
+        AttributeHeader(False, ('smokePacksPerYears', np.float32), 6)
+        
+
+    
+    
+  
+    ]
+    
+    data_table = _read_dataset(lines, attrib_headers)
+    return attrib_headers, data_table
+
+
+
+def student_academic_performance_dataset():
+    file = open('data/Sapfile1.arff')
+    lines = file.readlines()
+    lines = lines[28:158]
+
+
+    attrib_headers = [
+        AttributeHeader(False, ('sex', '<S16'),  0),
+        AttributeHeader(False, ('testNotPerformed','<S16'), 2),
+        AttributeHeader(False, ('township', '<S16'), 3),
+        AttributeHeader(False, ('independentAssessment', '<S16'), 4),
+        AttributeHeader(False, ('extrasensoryperception', '<S16'), 5),
+        AttributeHeader(False, ('maritalStatus', '<S16'), 7),
+        AttributeHeader(False, ('fatheroccupation', '<S16'), 14),
+        AttributeHeader(False, ('motheroccupation', '<S16'), 15),
+        AttributeHeader(False, ('attendance', '<S16'), 21)
+        
+
+    
+    
+  
+    ]
+    
+    data_table = _read_dataset(lines, attrib_headers)
+    return attrib_headers, data_table
+
+
+def pixel_image_dataset():
+    file = open('data/segmentation.data')
+    lines = file.readlines()
+    lines = lines[6:215]
+
+
+    attrib_headers = [
+        AttributeHeader(False, ('regionalCentroidCol', np.float32),  0),
+        AttributeHeader(False, ('regionCentroidRow', np.float32), 1),
+        AttributeHeader(False, ('regionPixelCount', np.float32), 2),
+        AttributeHeader(False, ('shortLineDensity', np.float32), 3),
+        AttributeHeader(False, ('hueMean', np.float32), 17)
+
+    
+    
+  
+    ]
+    
+    data_table = _read_dataset(lines, attrib_headers)
+    return attrib_headers, data_table
+
+
+
+def seismic_bumps_dataset():
+    file = open('data/seismic-bumps.arff')
+    lines = file.readlines()
+    lines = lines[155:2738]
+
+
+    attrib_headers = [
+        AttributeHeader(False, ('seismic', '<S16'),  0),
+        AttributeHeader(False, ('seismoacoustic', '<S16'), 1),
+        AttributeHeader(False, ('genergy', '<S16'), 2),
+        AttributeHeader(False, ('gpuls', np.float32), 3),
+        AttributeHeader(False, ('gdenergy', np.float32), 4),
+        AttributeHeader(False, ('gdpuls', np.float32), 5),
+        AttributeHeader(False, ('ghazard', '<S16'), 6),
+        AttributeHeader(False, ('class', np.float32), 18)
+    
+    ]
+    
+    data_table = _read_dataset(lines, attrib_headers)
+    return attrib_headers, data_table
+
+
+def somerville_happiness_dataset():
+    file = open('data/SomervilleHappinessSurvey2015.csv')
+    lines = file.readlines()
+    lines = lines[2:144]
+
+
+    attrib_headers = [
+        AttributeHeader(False, ('happyUnhappy', np.float32),  0),
+        AttributeHeader(False, ('cityService', np.float32), 1),
+        AttributeHeader(False, ('costofHousing', np.float32), 2),
+        AttributeHeader(False, ('qualityofPubSchool', np.float32), 3),
+        AttributeHeader(False, ('trustofPolice', np.float32), 4),
+        AttributeHeader(False, ('maintenanceofRoads', np.float32), 5),
+        AttributeHeader(False, ('socialEvents', np.float32), 6)
+        
+    
+    ]
+    
+    data_table = _read_dataset(lines, attrib_headers)
+    return attrib_headers, data_table
+
+
+def spambase_dataset():
+    file = open('data/spambase.data')
+    lines = file.readlines()
+    lines = lines[1:4601]
+
+
+    attrib_headers = [
+        AttributeHeader(False, ('freqMake', np.float32),  0),
+        AttributeHeader(False, ('freqAddress', np.float32), 1),
+        AttributeHeader(False, ('freqAll', np.float32), 2),
+        AttributeHeader(False, ('freq3D', np.float32), 3),
+        AttributeHeader(False, ('freqOur', np.float32), 4),
+        AttributeHeader(False, ('freqOver', np.float32), 5),
+        AttributeHeader(False, ('freqRemove', np.float32), 6),
+        AttributeHeader(False, ('freqInternet', np.float32), 7),
+        AttributeHeader(False, ('freqOrder', np.float32), 8)
+    
+    ]
+    
+    data_table = _read_dataset(lines, attrib_headers)
+    return attrib_headers, data_table
