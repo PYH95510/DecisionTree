@@ -1,28 +1,3 @@
-@relation adult-weka.filters.unsupervised.attribute.NumericToNominal-Rfirst-10
-
-@attribute A1_Score {0,1}
-@attribute A2_Score {0,1}
-@attribute A3_Score {0,1}
-@attribute A4_Score {0,1}
-@attribute A5_Score {0,1}
-@attribute A6_Score {0,1}
-@attribute A7_Score {0,1}
-@attribute A8_Score {0,1}
-@attribute A9_Score {0,1}
-@attribute A10_Score {0,1}
-@attribute age numeric
-@attribute gender {f,m}
-@attribute ethnicity {White-European,Latino,Others,Black,Asian,'Middle Eastern ',Pasifika,'South Asian',Hispanic,Turkish,others}
-@attribute jundice {no,yes}
-@attribute austim {no,yes}
-@attribute contry_of_res {'United States',Brazil,Spain,Egypt,'New Zealand',Bahamas,Burundi,Austria,Argentina,Jordan,Ireland,'United Arab Emirates',Afghanistan,Lebanon,'United Kingdom','South Africa',Italy,Pakistan,Bangladesh,Chile,France,China,Australia,Canada,'Saudi Arabia',Netherlands,Romania,Sweden,Tonga,Oman,India,Philippines,'Sri Lanka','Sierra Leone',Ethiopia,'Viet Nam',Iran,'Costa Rica',Germany,Mexico,Russia,Armenia,Iceland,Nicaragua,'Hong Kong',Japan,Ukraine,Kazakhstan,AmericanSamoa,Uruguay,Serbia,Portugal,Malaysia,Ecuador,Niger,Belgium,Bolivia,Aruba,Finland,Turkey,Nepal,Indonesia,Angola,Azerbaijan,Iraq,'Czech Republic',Cyprus}
-@attribute used_app_before {no,yes}
-@attribute result numeric
-@attribute age_desc {'18 and more'}
-@attribute relation {Self,Parent,'Health care professional',Relative,Others}
-@attribute Class/ASD {NO,YES}
-
-@data
 1,1,1,1,0,0,1,1,0,0,26,f,White-European,no,no,'United States',no,6,'18 and more',Self,NO
 1,1,0,1,0,0,0,1,0,1,24,m,Latino,no,yes,Brazil,no,5,'18 and more',Self,NO
 1,1,0,1,1,0,1,1,1,1,27,m,Latino,yes,yes,Spain,no,8,'18 and more',Parent,YES
