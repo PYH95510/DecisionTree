@@ -211,4 +211,4 @@ if __name__ == '__main__':
     # root_node = build_tree(*data_reader.read_balance_scale_dataset())
     # save_tree(root_node, 'models/gini/balance-scale.pickle')
 
-    predict('models/gini/balance-scale.pickle', *data_reader.read_balance_scale_dataset())
+    predict('models/gini/adult.pickle', *data_reader.read_adult_dataset())
