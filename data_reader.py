@@ -179,7 +179,7 @@ def read_breast_cancer_dataset():
 
     return attrib_headers, data_table
 
-def read_credit_approval_data():
+def read_credit_approval_dataset():
     file = open('data/crx.data')
     lines = file.readlines()
 
@@ -310,6 +310,9 @@ def read_pixel_image_dataset():
     ]
     
     data_table = _read_dataset(lines, attrib_headers)
+    np.random.seed(1)
+    np.random.shuffle(data_table)
+    
     return attrib_headers, data_table
 
 def read_seismic_bumps_dataset():
@@ -353,16 +356,16 @@ def read_spambase_dataset():
     lines = file.readlines()
 
     attrib_headers = [
-        AttributeHeader(True,   ('freqMake', np.float32),       1),
-        AttributeHeader(True,   ('freqAddress', np.float32),    2),
-        AttributeHeader(True,   ('freqAll', np.float32),        3),
-        AttributeHeader(True,   ('freq3D', np.float32),         4),
-        AttributeHeader(True,   ('freqOur', np.float32),        5),
-        AttributeHeader(True,   ('freqOver', np.float32),       6),
-        AttributeHeader(True,   ('freqRemove', np.float32),     7),
-        AttributeHeader(True,   ('freqInternet', np.float32),   8),
-        AttributeHeader(True,   ('freqOrder', np.float32),      9),
-        AttributeHeader(False,  ('isSpam', np.float32),         0)
+        AttributeHeader(True,   ('freqMake', np.float32),       0),
+        AttributeHeader(True,   ('freqAddress', np.float32),    1),
+        AttributeHeader(True,   ('freqAll', np.float32),        2),
+        AttributeHeader(True,   ('freq3D', np.float32),         3),
+        AttributeHeader(True,   ('freqOur', np.float32),        4),
+        AttributeHeader(True,   ('freqOver', np.float32),       5),
+        AttributeHeader(True,   ('freqRemove', np.float32),     6),
+        AttributeHeader(True,   ('freqInternet', np.float32),   7),
+        AttributeHeader(True,   ('freqOrder', np.float32),      8),
+        AttributeHeader(False,  ('isSpam', np.int32),           57)
     ]
     
     data_table = _read_dataset(lines, attrib_headers)
